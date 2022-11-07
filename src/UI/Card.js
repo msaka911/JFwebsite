@@ -4,11 +4,11 @@ const Card = (props) => {
 
 
   return (  
-  <div className={classes.card}>
-    {props.children}
+  <div className={classes.card} style={props.style}>
       <h3>{props.title}</h3>
      <label>{props.description}</label>
-     <Button >{props.button}</Button>
+     {/* <Button >{props.button}</Button> */}
+     {props.children}
   </div>)
 
 };

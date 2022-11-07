@@ -13,6 +13,7 @@
 
 .logo {
   width: 10%;
+  cursor: pointer;
 }
 
 .nav ul {

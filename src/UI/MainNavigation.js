@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 
 import classes from './MainNavigation.module.css';
@@ -11,19 +12,18 @@ const MainNavigation = () => {
   const [value,setValue]=useState(null)
    const[toggle,setToggle]=useState(false)
 
-
-
-  console.log(value)
+   const navigate=useNavigate();
 
   
   return (
     <header className={classes.header}>
       <div className={classes.top}>
-         <img src={logo} className={classes.logo}></img>
+         <img src={logo} className={classes.logo} onClick={()=>{navigate(`/home`)}}>
+         </img>
          <nav className={classes.nav}>
            <ul>
               <li>
-              <NavLink to='/Home' className={(navData) => (navData.isActive ? `${classes.active}` : '')}>
+              <NavLink to='/home' className={(navData) => (navData.isActive ? `${classes.active}` : '')}>
                   Home
               </NavLink>
               </li>

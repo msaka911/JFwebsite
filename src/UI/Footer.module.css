@@ -6,8 +6,16 @@
     margin:0rem;
     min-height:50px;
     border-top: 1px solid #444;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding: 1rem;
+    position:relative;
+    left:0;
+    bottom:0;
+    right:0;
+}
+
+.wrapper div h5 {
+    color: rgb(1, 165, 165);
+    font-weight: 800;
 }
 
 .media div h3{
@@ -20,3 +28,6 @@
 }
 
 
+.footer{
+    background-color: #f5f5f5;
+}

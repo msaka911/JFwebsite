@@ -9,11 +9,13 @@ import 'slick-carousel/slick/slick.css';
 import "slick-carousel/slick/slick-theme.css";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Button from '../UI/Button';
+import { Fragment, useEffect } from 'react';
 
-import { Fragment } from 'react';
-
+import OR from "../assets/old-republic.png"
+import allianz from "../assets/allianz.jpeg"
 const MainContent=()=>{
-    const { ref } = useParallax({ speed: -30 })
+    // const { ref } = useParallax({ speed: -30 })
 
     const navigate=useNavigate();
   
@@ -51,25 +53,30 @@ const MainContent=()=>{
           };
 
      //page animation------------------------------------------------------------
-     const allSections = document.querySelectorAll('section');
-     const revealSection = function (entries, observer) {
-       const [entry] = entries;
-     
-       if (!entry.isIntersecting) return;
-     
-       entry.target.classList.remove('section--hidden');
-       observer.unobserve(entry.target);
-     };
-     
-     const sectionObserver = new IntersectionObserver(revealSection, {
-       root: null,
-       threshold: 0.15,
-     });
-     
-     allSections.forEach(function (section) {
-       sectionObserver.observe(section);
-       section.classList.add('section--hidden');
-     });
+
+     useEffect(()=>{
+        const allSections = document.querySelectorAll('section');
+        const revealSection = function (entries, observer) {
+          const [entry] = entries;
+        
+          if (!entry.isIntersecting) return;
+          
+          console.log(entry.target.classList)
+          entry.target.classList.remove('section--hidden');
+          observer.unobserve(entry.target);
+        };
+        
+        const sectionObserver = new IntersectionObserver(revealSection, {
+          root: null,
+          threshold: 0.2,
+        });
+        
+        allSections.forEach(function (section) {
+          sectionObserver.observe(section);
+          section.classList.add('section--hidden');
+        });
+     },[])
+
      //------------------------------------------------------------
   
   
@@ -78,7 +85,7 @@ const MainContent=()=>{
     <header className={classes.welcome}>
       <h2>Welcome To</h2>
       <h1>JF Insurance</h1>
-      <img  ref={ref}  src={image}></img>
+      {/* <img  ref={ref}  src={image}></img> */}
     </header>
 
     <section  className={classes.slideDisplay}>
@@ -87,20 +94,23 @@ const MainContent=()=>{
             {...settings} 
             >
             <div className={classes.card}>
-            <Card title="Student" description="Our best advisors" button="Apply for Quote">
+            <Card title="Student" description="Our best advisors" style={{backgroundColor:"white"}}>
                 <img src={`https://www.jfgroup.ca/wp-content/uploads/2020/09/Group-100.png`} alt="Image1" />
+                <Button onClick={()=>{navigate(`/quote`)}} style={{backgroundColor: "teal",borderWidth:0}}>Apply for Quote</Button>
             </Card>
             </div>
 
             <div className={classes.card}>
-                <Card title="Travel" description="Our best advisors" button="Apply for Quote">
+                <Card title="Travel" description="Our best advisors" style={{backgroundColor:"white"}} >
                     <img src={`https://www.jfgroup.ca/wp-content/uploads/2020/09/Path-149.png`}  alt="Image2"/>
+                    <Button onClick={()=>{navigate(`/quote`)}}  style={{backgroundColor: "teal",borderWidth:0}}>Apply for Quote</Button>
                 </Card>
             </div>
 
             <div className={classes.card}>
-                <Card title="Visitors" description="Our best advisors" button="Apply for Quote">
+                <Card title="Visitors" description="Our best advisors" style={{backgroundColor:"white"}}>
                     <img src={`https://www.jfgroup.ca/wp-content/uploads/2020/09/Group-103.png`}  alt="Image3"/>
+                    <Button onClick={()=>{navigate(`/quote`)}} style={{backgroundColor: "teal",borderWidth:0}}>Apply for Quote</Button>
                 </Card>
             </div>
             </Slider>
@@ -110,9 +120,9 @@ const MainContent=()=>{
 
     <section className={classes.introduction}>
      <h1>BUY WITH CONFIDENCE</h1>
-     <p>With our amazing collection on the lot, we guarantee you’ll be extremely satisfied with your choices. Come and test drive one now. 
-        Sometimes we offer an incredible discount on a select vehicle. Right now, that includes our extensive Vehicle collection. Whether you’re 
-        looking for new or used, large or small, bare essentials or fully equipped, we know you’ll ride away from YST AUTO SALES with an awesome set of wheels to call your own.
+     <p>Going places? TOP Travel Insurance is the perfect travel partner. Find the coverage that's right for you and know you're travelling protected.
+     </p>
+     <p>Study abroad? JF student Insurance is the perfect product for student. tudying abroad is exciting and adventurous! Make sure you have the right insurance coverage while in Canada.
      </p>
     </section>
     
@@ -124,32 +134,28 @@ const MainContent=()=>{
     <section className={classes.underwritter}>
         <h1 style={{color:"black"}}>Our Underwritter</h1>
         <div className={classes.section}>
-            <Card title="Berkley" description="Our best advisors" button="Details">
-                {/* <img src={finance}/> */}
+            <Card title="Berkley" description="Our best partner" button="Details">
+                <img src="https://www.berkleycanada.com/wp-content/themes/wp-bootstrap/images/logo.png"/>
             </Card>
-            <Card title="Allianz" description="Lease can be great options" button="Details">
-            {/* <img src={lease}/> */}
+            <Card title="Allianz" description="World leader insurance" button="Details">
+            <img src={allianz}/>
             </Card>
-            <Card i title="Old Republic" description="Extended Warranty" button="Details">
-            {/* <img src={warranty}/> */}
+            <Card i title="Old Republic" description="Your insurance specialist" button="Details">
+            <img src={OR}/>
             </Card>
       </div>
     </section>
     
   
-    {/* <section className={classes.group}>
-    <h2>Auto Group</h2>
-    <img src={group} ></img>
-    </section> */}
     
   
-    <section className="section section--quote">
+    <section className="section">
         <div className="section__title">
           <h3 className="section__header">
-            Get free quote for your car now!
+            Get free quote for insurance plan now!
           </h3>
         </div>
-        <button className={classes.btn} onClick={()=>{navigate(`/new-quote`)}}>Free Quote!</button>
+        <button className={classes.btn} onClick={()=>{navigate(`/quote`)}}>Free Quote!</button>
       </section>
     </Fragment>
     );
